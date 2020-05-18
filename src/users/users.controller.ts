@@ -16,34 +16,31 @@ export class UsersController {
   @Get()
   async findAll(): Promise<User[]> {
 
-      return await this.usersService.findAll();
+    return await this.usersService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param() params): Promise<User> {
     let id = parseInt(params.id);
-
-    if(isNaN(id) || typeof id !== 'number' || id <= 0) {
-
-       throw new ApiException('用户ID无效', ApiErrorCode.USER_ID_INVALID, HttpStatus.BAD_REQUEST);
-      
+    if (isNaN(id) || typeof id !== 'number' || id <= 0) {
+      throw new ApiException('用户ID无效', ApiErrorCode.USER_ID_INVALID, HttpStatus.BAD_REQUEST);
     }
-      return await this.usersService.findOne(params.id);
+    return await this.usersService.findOne(params.id);
   }
 
   @Post()
   async create(@Body() user: CreateUserDto) {
-      return await this.usersService.create(user);
+    return await this.usersService.create(user);
   }
 
   @Put()
   async edit(@Body() user: CreateUserDto) {
-      return await this.usersService.edit(user);
+    return await this.usersService.edit(user);
   }
 
   @Delete(':id')
   async remove(@Param() params) {
-      return await this.usersService.remove(params.id);
+    return await this.usersService.remove(params.id);
   }
 
 }
